@@ -1,0 +1,49 @@
+public class Archer extends Hero{
+	//attack function
+	public int attack() {
+		Scanner sc =  new Scanner(System.in);
+		System.out.println("1.더블 샷");
+		System.out.println("2.화살비");
+		System.out.println("3.독화살");
+		System.out.print("공격 번호를 입력하세요 : ");
+		int number = sc.nextInt();
+		
+		//sum all attack
+		int sum = 0;
+		//double attack
+		if(number==1) {
+			sum += level*10;
+			sum += power*12;
+			sum += defense*7;
+			System.out.println("데미지를 "+sum+"주었습니다.");
+			return sum;
+		}
+		//arrow rain attack
+		else if(number == 2) {
+			sum += level* 12;
+			sum += power * 17;
+			sum += defense * 12;
+			System.out.println("데미지를 "+sum+"주었습니다.");
+			return sum;
+		}
+		//poisoned dart attack
+		else if(number == 3) {
+			sum += level* 10;
+			sum += power * 14;
+			sum += defense * 10;
+			System.out.println("데미지를 "+sum+"주었습니다.");
+			return sum;
+		}
+		System.out.println("데미지를 "+sum+"주었습니다.");
+		return sum;
+	}
+	//attack function
+	public void attacked(int sum) {
+		//defense >= demage
+		if(defense >= sum)
+			hp = hp - 0;
+		else
+			hp = hp + defense - sum;
+	}
+	
+}
