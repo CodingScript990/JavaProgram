@@ -1,0 +1,18 @@
+public class Monster extends Character{
+	//Monster basic power,defense,money,experience
+	public int power;
+	public int defense;
+	public int money;
+	public int experience;
+	public int attack() {
+		return power;
+	}
+	//attack function
+	public void attacked(int sum) {
+	//defense >= demage
+		if(defense >= sum)
+			hp = hp - 0;
+		else
+			hp = hp + defense - sum;
+	}
+}
