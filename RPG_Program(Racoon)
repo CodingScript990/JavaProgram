@@ -1,0 +1,15 @@
+public class Racoon extends Monster{
+	//attack function
+	public int attack() {
+		System.out.println("데미지를 "+power+"주었습니다.");
+		return power;
+	}
+	//attack
+	public void attacked(int sum) {
+		//defense >= demage
+		if(defense >= sum)
+			hp = hp - 0;
+		else
+			hp = hp + defense - sum;
+	}
+}
