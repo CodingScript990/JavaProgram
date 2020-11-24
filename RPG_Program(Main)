@@ -1,0 +1,227 @@
+public class GameMain {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Hero hero = new Hero();
+		
+		System.out.println("-------RPG Game-------");
+		System.out.println("1.전사");
+		System.out.println("2.마법사");
+		System.out.println("3.궁수");
+		System.out.println("4.도적");
+		System.out.println("직업의 번호를 입려하세요 : ");
+		int number = sc.nextInt();
+		
+		//warrior choice
+		if(number == 1) {
+			System.out.println("전사가 선택되었습니다.");
+			hero = new Warrior();
+			hero.defense =25;
+			hero.power = 15;
+			hero.level = 1;
+			hero.hp = 80;
+			hero.mp = 15;
+		}
+		else if(number == 2) {
+			System.out.println("마법사가 선택되었습니다.");
+			hero = new Magician();
+			hero.defense =10;
+			hero.power = 20;
+			hero.level = 1;
+			hero.hp = 65;
+			hero.mp = 60;
+		}
+		else if(number == 3) {
+			System.out.println("궁수가 선택되었습니다.");
+			hero = new Archer();
+			hero.defense =10;
+			hero.power = 20;
+			hero.level = 1;
+			hero.hp = 50;
+			hero.mp = 20;
+		}
+		else if(number == 4) {
+			System.out.println("닌자가 선택되었습니다.");
+			hero = new Archer();
+			hero.defense =12;
+			hero.power = 16;
+			hero.level = 1;
+			hero.hp = 65;
+			hero.mp = 20;
+		}
+		System.out.print("영웅의 이름을 입력하세요 : ");
+		hero.name = sc.next();
+		System.out.println("이름이 입력되었습니다.");
+		System.out.println("게임에 입장하였습니다.");
+		
+		while(true) {
+			//hero experience show
+			System.out.println("************************");
+			System.out.println("현재 당신의 이름 : "+hero.name);
+			System.out.println("현재 당신의 레벨 : "+hero.level);
+			System.out.println("현재 당신의 힘 : "+hero.power);
+			System.out.println("현재 당신의 방어력 : "+hero.defense);
+			System.out.println("현재 당신의 HP : "+hero.hp);
+			System.out.println("현재 당신의  MP : "+hero.mp);
+			System.out.println("현재 당신의 돈 : "+hero.money);
+			System.out.println("현재 당신의 경험치 : "+hero.experience);
+			System.out.println("************************");
+			//place checking
+			System.out.println("1.사냥터");
+			System.out.println("2.무기 상점");
+			System.out.println("3.포션 상점");
+			System.out.println("입장할 장소를 입력하세요 : ");
+			number = sc.nextInt();
+			//Hunt place
+			if(number == 1) {
+				Monster monster = new Monster();
+				System.out.println("사냥터에 입장하였습니다.");
+				System.out.println("1.너굴맨");
+				System.out.println("2.무서운 살쾡이");
+				System.out.println("3.꿀꿀");
+				System.out.println("4.레드독");
+				System.out.println("5.황금드래곤");
+				System.out.println("전투할 상대를 입력하세요 : ");
+				number = sc.nextInt();
+				//Rocoon hunt
+				if(number==1) {
+					monster = new Racoon();
+					monster.name = "너굴맨";
+					monster.hp = 100;
+					monster.mp = 0;
+					monster.level = 1;
+					monster.power = 25;
+					monster.defense = 8;
+					monster.money = 13;
+					monster.experience = 10;
+				}
+				//WildCat
+				if(number==2) {
+					monster = new WildCat();
+					monster.name = "무서운 살쾡이";
+					monster.hp = 120;
+					monster.mp = 0;
+					monster.level = 10;
+					monster.power = 55;
+					monster.defense = 20;
+					monster.money = 40;
+					monster.experience = 18;
+				}
+				//WildPig
+				if(number==3) {
+					monster = new WildPig();
+					monster.name = "꿀꿀";
+					monster.hp = 70;
+					monster.mp = 0;
+					monster.level = 1;
+					monster.power = 20;
+					monster.defense = 5;
+					monster.money = 10;
+					monster.experience = 7;
+				}
+				//WildDog
+				if(number==4) {
+					monster = new WildDog();
+					monster.name = "레드독";
+					monster.hp = 200;
+					monster.mp = 10;
+					monster.level = 20;
+					monster.power = 70;
+					monster.defense = 30;
+					monster.money = 13;
+					monster.experience = 22;
+				}
+				if(number==5) {
+					monster = new WildDragon();
+					monster.name = "황금드래곤";
+					monster.hp = 600;
+					monster.mp = 200;
+					monster.level = 50;
+					monster.power = 120;
+					monster.defense = 50;
+					monster.money = 100;
+					monster.experience = 40;
+				}
+				while(true) {
+					System.out.println("영웅의 턴입니다.");
+					monster.attacked(hero.attack());
+					//monster hp <= 0
+					if(monster.hp <= 0) {
+						System.out.println(monster.name+"이 죽었습니다.");
+						hero.experience += monster.experience;
+						hero.money += monster.money;
+						break;
+					}
+					System.out.println(monster.name+"의 공격입니다.");
+					hero.attacked(monster.attack());
+					//hero hp <= 0
+					if(hero.hp <= 0) {
+						System.out.println("영웅이 죽었습니다.");
+						//hero hp => 1
+						hero.hp = 1;
+						System.out.println("영웅이 체력 "+hero.hp+"으로 부활했습니다.");
+						break;
+					}
+				}
+			}
+			//Store
+			else if(number==2) {
+				WeaponStore weaponStore = new WeaponStore();
+				System.out.println("무기 상점에 입장하였습니다.");
+				System.out.println("1.공통 무기 100원");
+				System.out.println("2.공통 방패(100원)");
+				System.out.println("원하시는 물건을 입력하세요 : ");
+				number = sc.nextInt();
+				int temp = hero.money;
+				if((hero.money = weaponStore.show(hero.money, number))!=-1) {
+					System.out.println("구입이 완료되었습니다.");
+					if(number==1)
+						hero.power += 5;
+					if(number == 2)
+						hero.defense += 5;
+				}
+				else {
+					System.out.println("돈이 부족합니다.");
+					hero.money = temp;
+				}
+			}
+			//postionStore
+			else if(number == 3) {
+				PotionStore potionStore = new PotionStore();
+				System.out.println("포션 상점에 입장하였습니다.");
+				System.out.println("1.힘 증강 포션(100원)");
+				System.out.println("2.방어력 증강 포션(100원)");
+				System.out.println("3.경험치 증강 포션(300원)");
+				System.out.println("4.HP증강 포션(10원)");
+				System.out.println("5.MP증감 포션(10원)");
+				System.out.println("원하시는 물건을 입력하세요 : ");
+				number = sc.nextInt();
+				int temp = hero.money;
+				if((hero.money = potionStore.show(hero.money, number))!=-1) {
+					System.out.println("구입 완료되었습니다.");
+					if(number==1)
+						hero.power += 3;
+					if(number==2)
+						hero.defense += 3;
+					if(number==3)
+						hero.experience += 50;
+					if(number==4)
+						hero.hp +=50;
+					if(number==5)
+						hero.mp += 50;
+				}
+				else {
+					System.out.println("돈이 부족합니다.");
+					hero.money = temp;
+				}
+			}
+			if(hero.experience >= hero.level*100) {
+				hero.level += 1;
+				System.out.println("영웅의 레벨이 "+hero.level+"이 되었습니다.");
+				hero.money += hero.level*8;
+				System.out.println("레벨업 기념으로 돈이"+hero.money+"원 증가 했습니다.");
+				hero.experience = 0;
+			}
+				
+		}
+	}
+}
