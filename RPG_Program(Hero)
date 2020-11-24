@@ -1,0 +1,20 @@
+public class Hero extends Character{
+	//캐릭터 중에서 영웅은 공통적으로 힘,방어력,돈,경험치라는 변수를 가지고 있다.
+	public int power;
+	public int defense;
+	public int money = 0;
+	public int experience = 0;
+	
+	//attack
+	public int attack() {
+		return power;
+	}
+	//attack function
+	public void attacked(int sum) {
+	//Shield < damege ↑
+	if(defense >= sum)
+		hp = hp -0;
+	else
+		hp = hp + defense - sum;
+		
+	
