@@ -1,0 +1,15 @@
+public class WildCat extends Monster{
+//attack function
+	public int attack() {
+		System.out.println("데미지는 "+power+"입니다.");
+		return power;
+	}
+	//attack
+	public void attacked(int sum) {
+		//defense >= demage
+		if(defense >= sum)
+			hp = hp - 0;
+		else
+			hp = hp = defense;
+	}
+}
